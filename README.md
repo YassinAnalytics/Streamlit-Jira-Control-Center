@@ -3,6 +3,8 @@ Automate Jira Ticket Creation from a Streamlit App (via n8n)
 
 A portfolio-friendly demo showing how a Streamlit app can create Jira issues through an n8n webhook. Includes a rich dashboard, optional AI summaries, and a safe “demo-only” mode that works without any external services.
 
+https://jira-control-center.streamlit.app/
+
 ## 🔎 What you get
 
 - Streamlit dashboard with table/cards views, filters, KPIs, and exports
