@@ -1,9 +1,9 @@
-# Streamlit-Jira-Control-Center 
+#Streamlit-Jira-Control-Center 
 Automate Jira Ticket Creation from a Streamlit App (via n8n)
 
 A portfolio-friendly demo showing how a Streamlit app can create Jira issues through an n8n webhook. Includes a rich dashboard, optional AI summaries, and a safe “demo-only” mode that works without any external services.
 
-🔎 ## What you get
+🔎 ##What you get
 
 - Streamlit dashboard with table/cards views, filters, KPIs, and exports
 
@@ -19,7 +19,7 @@ A portfolio-friendly demo showing how a Streamlit app can create Jira issues thr
 
 - De-dup & validation in n8n to avoid empty/duplicate tickets
 
-🚀 ## Quick start
+🚀 ##Quick start
 - Option A — Portfolio demo (no external services)
 
 Create a virtual env and install deps:
@@ -81,7 +81,7 @@ Submit the Create a new ticket form. You should get a Jira key back.
 | `DEEPSEEK_BASE_URL` | DeepSeek base URL                                  | Optional               | `https://api.deepseek.com/v1`            |
 
 
-🧩 ## How it works
+🧩 ##How it works
 
 - Streamlit form collects ticket details (project key, type, summary, description, priority, story points, etc.).
 
@@ -112,7 +112,7 @@ Return to app: { ok: true, jiraKey: "TES-123", url: "https://<your>.atlassian.ne
 Streamlit UI displays the created key + link (or local confirmation in demo mode).
 
 
-🧪 ## Test the webhook (without the app)
+🧪 ##Test the webhook (without the app)
 
 
 curl -X POST "$N8N_WEBHOOK_URL" \
@@ -134,14 +134,14 @@ curl -X POST "$N8N_WEBHOOK_URL" \
 Expected (from n8n):
 { "ok": true, "jiraKey": "TES-123", "url": "https://<your>.atlassian.net/browse/TES-123" }
 
-🧠 ## AI summaries (optional)
+🧠 ##AI summaries (optional)
 
 Choose provider from the sidebar (OpenAI, Claude, Mistral, DeepSeek, Ollama).
 
 If no API key is set, the app uses a local fallback summarizer (no external calls).
 
 
-🔐 ## Security notes
+🔐 ##Security notes
 
 - Never commit secrets (.env, API keys, webhook URLs).
 
@@ -151,7 +151,7 @@ If no API key is set, the app uses a local fallback summarizer (no external call
 
 - Jira assignee in Cloud usually requires accountId. The workflow intentionally avoids setting assignee.name.
 
-🧯 ## Troubleshooting
+🧯 ##Troubleshooting
 
 - “400 - Invalid request payload” from Jira
 
@@ -176,7 +176,7 @@ If no API key is set, the app uses a local fallback summarizer (no external call
 Add tickets_jira_demo.json or click “Generate demo dataset (60 tickets)” in the app.
 
 
-🧪 ## Requirements
+🧪 ##Requirements
 
 - Minimal (for demo + optional OpenAI fallback):
 - streamlit>=1.31
@@ -188,7 +188,7 @@ Add tickets_jira_demo.json or click “Generate demo dataset (60 tickets)” in 
 If you won’t use OpenAI, you can drop it from requirements.txt. The app will still run and use local summaries.
 
 
-📦 ## Deploy to Streamlit Community Cloud
+📦 ##Deploy to Streamlit Community Cloud
 
 - Push app.py and requirements.txt to a GitHub repo.
 
@@ -204,7 +204,7 @@ Deploy. Your app will be live at something like:
 https://<your-repo-name>-<your-username>.streamlit.app
 
 
-🙋 ## FAQ
+🙋 ##FAQ
 
 Can I publish without any secrets?
 Yes. It will run as a portfolio demo with local data and no external calls.
