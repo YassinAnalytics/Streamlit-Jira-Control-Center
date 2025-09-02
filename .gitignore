@@ -1,0 +1,67 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Python / build
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+pip-wheel-metadata/
+
+# Environnements virtuels
+.venv/
+venv/
+env/
+ENV/
+
+# Logs
+*.log
+
+# Tests / coverage
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# IDE / éditeurs
+.vscode/
+.idea/
+*.code-workspace
+
+# Streamlit
+.streamlit/secrets.toml
+.streamlit/*.toml
+.streamlit/*.yaml
+
+#  local data / démo
+tickets_jira_demo.json
+
+# Secrets & env
+.env
+.env.*
+*.key
+*.pem
+
+# Caches 
+.cache/
+.mypy_cache/
+.pytype/
+.pyre/
+*.swp
+*~
+
+#  Notebooks & exports
+.ipynb_checkpoints/
+*.ipynb
+*.csv
+*.tsv
+*.xlsx
+
+# 
+node_modules/
