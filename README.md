@@ -3,24 +3,24 @@ Automate Jira Ticket Creation from a Streamlit App (via n8n)
 
 A portfolio-friendly demo showing how a Streamlit app can create Jira issues through an n8n webhook. Includes a rich dashboard, optional AI summaries, and a safe “demo-only” mode that works without any external services.
 
-🔎 What you get
+🔎 ## What you get
 
-Streamlit dashboard with table/cards views, filters, KPIs, and exports
+- Streamlit dashboard with table/cards views, filters, KPIs, and exports
 
-Create Ticket form that POSTs to your n8n webhook
+- Create Ticket form that POSTs to your n8n webhook
 
-Two modes
+- Two modes
 
-Demo (no external calls): generates/loads sample data locally
+- Demo (no external calls): generates/loads sample data locally
 
-Live (production): posts to n8n → Jira REST API
+- Live (production): posts to n8n → Jira REST API
 
-Optional AI summaries (OpenAI/Claude/Mistral/DeepSeek/Ollama) with local fallback
+- Optional AI summaries (OpenAI/Claude/Mistral/DeepSeek/Ollama) with local fallback
 
-De-dup & validation in n8n to avoid empty/duplicate tickets
+- De-dup & validation in n8n to avoid empty/duplicate tickets
 
-🚀 Quick start
-Option A — Portfolio demo (no external services)
+🚀 ## Quick start
+- Option A — Portfolio demo (no external services)
 
 Create a virtual env and install deps:
 pip install -r requirements.txt
@@ -36,7 +36,7 @@ Use Filters, AI summary (optional), and Create a new ticket form.
 
 Leave “Create via n8n only” OFF (default in this repo) so tickets are shown locally.
 
-Option B — Live Jira creation (n8n + Jira)
+- Option B — Live Jira creation (n8n + Jira)
 
 Import & activate the n8n workflow
 
@@ -49,10 +49,14 @@ Activate the workflow and copy the Production URL (not the Test URL).
 Set Streamlit secret N8N_WEBHOOK_URL
 
 Local: create a .env file next to app.py:
+
+
 N8N_WEBHOOK_URL=https://YOUR-N8N-HOST/webhook/your-path
 N8N_ONLY=true
 
 Streamlit Community Cloud: go to Settings → Secrets and add:
+
+
 N8N_WEBHOOK_URL="https://YOUR-N8N-HOST/webhook/your-path"
 N8N_ONLY="true"
 
@@ -77,15 +81,15 @@ Submit the Create a new ticket form. You should get a Jira key back.
 | `DEEPSEEK_BASE_URL` | DeepSeek base URL                                  | Optional               | `https://api.deepseek.com/v1`            |
 
 
-🧩 How it works
+🧩 ## How it works
 
-Streamlit form collects ticket details (project key, type, summary, description, priority, story points, etc.).
+- Streamlit form collects ticket details (project key, type, summary, description, priority, story points, etc.).
 
-POST to n8n (if N8N_WEBHOOK_URL is set or the user inputs it in the sidebar).
+- POST to n8n (if N8N_WEBHOOK_URL is set or the user inputs it in the sidebar).
 
-n8n workflow
+- n8n workflow
 
-Anti-double: blocks empty/invalid requests and prevents duplicates (simple in-memory check).
+- Anti-double: blocks empty/invalid requests and prevents duplicates (simple in-memory check).
 
 Process data: builds a valid Jira payload:
 
@@ -107,7 +111,10 @@ Return to app: { ok: true, jiraKey: "TES-123", url: "https://<your>.atlassian.ne
 
 Streamlit UI displays the created key + link (or local confirmation in demo mode).
 
-🧪 Test the webhook (without the app)
+
+🧪 ## Test the webhook (without the app)
+
+
 curl -X POST "$N8N_WEBHOOK_URL" \
   -H "Content-Type: application/json" \
   -d '{
@@ -122,65 +129,70 @@ curl -X POST "$N8N_WEBHOOK_URL" \
       "story_points": 3
     }
   }'
+
+  
 Expected (from n8n):
 { "ok": true, "jiraKey": "TES-123", "url": "https://<your>.atlassian.net/browse/TES-123" }
 
-🧠 AI summaries (optional)
+🧠 ## AI summaries (optional)
 
 Choose provider from the sidebar (OpenAI, Claude, Mistral, DeepSeek, Ollama).
 
 If no API key is set, the app uses a local fallback summarizer (no external calls).
 
-🔐 Security notes
 
-Never commit secrets (.env, API keys, webhook URLs).
+🔐 ## Security notes
 
-Use Streamlit Secrets (cloud) or a local .env.
+- Never commit secrets (.env, API keys, webhook URLs).
 
-In n8n, keep your webhook path private and use the Production URL in the app.
+- Use Streamlit Secrets (cloud) or a local .env.
 
-Jira assignee in Cloud usually requires accountId. The workflow intentionally avoids setting assignee.name.
+- In n8n, keep your webhook path private and use the Production URL in the app.
 
-🧯 Troubleshooting
+- Jira assignee in Cloud usually requires accountId. The workflow intentionally avoids setting assignee.name.
 
-“400 - Invalid request payload” from Jira
+🧯 ## Troubleshooting
 
-Ensure the n8n HTTP node sends raw JSON body (not [object Object]).
+- “400 - Invalid request payload” from Jira
 
-Headers: Content-Type: application/json, Accept: application/json.
+- Ensure the n8n HTTP node sends raw JSON body (not [object Object]).
 
-Payload must be { "fields": { ... } }, not just fields directly.
+- Headers: Content-Type: application/json, Accept: application/json.
 
-Story Points field ID may differ (often customfield_10016). Adjust if needed.
+- Payload must be { "fields": { ... } }, not just fields directly.
 
-Duplicate empty tickets
+- Story Points field ID may differ (often customfield_10016). Adjust if needed.
 
-Don’t run the HTTP Request node manually in n8n. Trigger only via Webhook.
+- Duplicate empty tickets
 
-Keep the anti-double code and the IF branching as in the template.
+- Don’t run the HTTP Request node manually in n8n. Trigger only via Webhook.
 
-In Streamlit, the form submits once; avoid triggering multiple payloads on reruns.
+- Keep the anti-double code and the IF branching as in the template.
 
-No data appears in the dashboard
+- In Streamlit, the form submits once; avoid triggering multiple payloads on reruns.
+
+- No data appears in the dashboard
 
 Add tickets_jira_demo.json or click “Generate demo dataset (60 tickets)” in the app.
 
-🧪 Requirements
 
-Minimal (for demo + optional OpenAI fallback):
-streamlit>=1.31
-pandas>=2.1
-requests>=2.31
-python-dotenv>=1.0
-openai>=1.43 ; python_version >= "3.8"
+🧪 ## Requirements
+
+- Minimal (for demo + optional OpenAI fallback):
+- streamlit>=1.31
+- pandas>=2.1
+- requests>=2.31
+- python-dotenv>=1.0
+- openai>=1.43 ; python_version >= "3.8"
 
 If you won’t use OpenAI, you can drop it from requirements.txt. The app will still run and use local summaries.
 
-📦 Deploy to Streamlit Community Cloud
 
-Push app.py and requirements.txt to a GitHub repo.
+📦 ## Deploy to Streamlit Community Cloud
 
-In Streamlit Cloud, New app → select your repo/branch.
+- Push app.py and requirements.txt to a GitHub repo.
+
+- In Streamlit Cloud, New app → select your repo/branch.
 
 (Optional) Add Secrets:
 N8N_WEBHOOK_URL="https://YOUR-N8N/webhook/your-path"
@@ -188,9 +200,11 @@ N8N_ONLY="true"
 OPENAI_API_KEY="..."
 
 Deploy. Your app will be live at something like:
+
 https://<your-repo-name>-<your-username>.streamlit.app
 
-🙋 FAQ
+
+🙋 ## FAQ
 
 Can I publish without any secrets?
 Yes. It will run as a portfolio demo with local data and no external calls.
