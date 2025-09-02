@@ -828,4 +828,5 @@ with c2:
     </div>
     """, unsafe_allow_html=True)
 
-st.caption("Set N8N_WEBHOOK_URL in your environment (or in the sidebar). Toggle 'n8n only' to avoid local JSON writes and let n8n/Jira be the source of truth.")
+# st.caption("Set N8N_WEBHOOK_URL in your environment (or in the sidebar). Toggle 'n8n only' to avoid local JSON writes and let n8n/Jira be the source of truth.")
+
