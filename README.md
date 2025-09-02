@@ -36,6 +36,8 @@ Use Filters, AI summary (optional), and Create a new ticket form.
 
 Leave “Create via n8n only” OFF (default in this repo) so tickets are shown locally.
 
+
+
 - Option B — Live Jira creation (n8n + Jira)
 
 Import & activate the n8n workflow
@@ -206,14 +208,18 @@ https://<your-repo-name>-<your-username>.streamlit.app
 
 ## 🙋 FAQ
 
-Can I publish without any secrets?
+- Can I publish without any secrets?
+
 Yes. It will run as a portfolio demo with local data and no external calls.
 
-Do I need the demo JSON?
+- Do I need the demo JSON?
+
 No. If it’s missing, the app can generate 60 realistic tickets for you.
 
-Where do I put my n8n URL?
+- Where do I put my n8n URL?
+
 In .env (local) or Streamlit Secrets (cloud) as N8N_WEBHOOK_URL.
 
-Will this overwrite anything in Jira?
+- Will this overwrite anything in Jira?
+
 No. It only creates issues via the Jira REST API when you enable the live mode and submit the form.
